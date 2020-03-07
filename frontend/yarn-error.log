@@ -1,0 +1,61 @@
+Arguments: 
+  /home/danchick/.nvm/versions/node/v10.11.0/bin/node /usr/share/yarn/bin/yarn.js
+
+PATH: 
+  /home/danchick/.rbenv/plugins/ruby-build/bin:/home/danchick/.rbenv/shims:/home/danchick/.rbenv/bin:/home/danchick/.rbenv/plugins/ruby-build/bin:/home/danchick/.rbenv/shims:/home/danchick/.rbenv/bin:/home/danchick/bin/Sencha/Cmd:/home/danchick/.nvm/versions/node/v10.11.0/bin:/home/danchick/bin:/home/danchick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+
+Yarn version: 
+  1.10.1
+
+Node version: 
+  10.11.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/danchick/node/electron/personal-app/frontend/package.json: Unexpected token ; in JSON at position 944
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1136:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:98:30)
+      at /usr/share/yarn/lib/cli.js:109:13
+
+npm manifest: 
+  {
+      "name": "personal-app-frontend",
+      "version": "1.0.0",
+      "main": "index.js",
+      "scripts": {
+        "build": "./node_modules/.bin/webpack",
+        "dev": "./node_modules/.bin/webpack -w",
+        "checkstyle": "./node_modules/.bin/prettier -c **/*{html,js,jsx}",
+        "format": "./node_modules/.bin/prettier --write **/*{html,js,jsx}"
+      },
+      "devDependencies": {
+        "@babel/core": "^7.7.2",
+        "@babel/preset-env": "^7.7.1",
+        "@babel/preset-react": "^7.7.0",
+        "babel-loader": "^8.0.6",
+        "bootstrap": "^4.4.1",
+        "css-loader": "^3.2.0",
+        "lodash": "^4.17.15",
+        "prettier": "^1.19.1",
+        "prop-types": "^15.7.2",
+        "react": "^16.12.0",
+        "react-bootstrap": "^1.0.0-beta.16",
+        "react-dom": "^16.12.0",
+        "react-redux": "^7.1.3",
+        "redux": "^4.0.4",
+        "reselect": "^4.0.0",
+        "style-loader": "^1.0.0",
+        "webpack": "^4.41.2",
+        "webpack-cli": "^3.3.10"
+      }
+  };
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

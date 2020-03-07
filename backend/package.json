@@ -1,0 +1,22 @@
+{
+    "name": "personal-app-backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "rebuild-sqlite3": "./node_modules/.bin/electron-rebuild -w sqlite3 -p",
+      "build": "./node_modules/.bin/webpack",
+      "dev": "./node_modules/.bin/webpack -w",
+      "checkstyle": "./node_modules/.bin/prettier -c **/*{html,js,jsx}",
+      "format": "./node_modules/.bin/prettier --write **/*{html,js,jsx}"
+    },
+    "devDependencies": {
+      "lodash": "4.17.15",
+      "prettier": "1.19.1",
+      "webpack": "4.41.2",
+      "webpack-cli": "3.3.10"
+    },
+    "dependencies": {
+      "sqlite3": "4.1.1"
+    }
+  }
+  
