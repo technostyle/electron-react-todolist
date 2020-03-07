@@ -211,6 +211,33 @@ Input.propTypes = {
 
 /***/ }),
 
+/***/ "./app/containers/todos/actions.js":
+/*!*****************************************!*\
+  !*** ./app/containers/todos/actions.js ***!
+  \*****************************************/
+/*! exports provided: requestTodos */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestTodos", function() { return requestTodos; });
+/* harmony import */ var modules_todos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! modules/todos/actions */ "./app/modules/todos/actions.js");
+
+
+var _window$require = window.require('electron'),
+    ipcRenderer = _window$require.ipcRenderer;
+
+var requestTodos = function requestTodos() {
+  return function (dispatch) {
+    ipcRenderer.on('getTodos-response', function (event, todos) {
+      dispatch(Object(modules_todos_actions__WEBPACK_IMPORTED_MODULE_0__["setTodos"])(todos));
+    });
+    ipcRenderer.send('getTodos');
+  };
+};
+
+/***/ }),
+
 /***/ "./app/containers/todos/filter-bar/actions.js":
 /*!****************************************************!*\
   !*** ./app/containers/todos/filter-bar/actions.js ***!
@@ -347,23 +374,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var modules_todos_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! modules/todos/selectors */ "./app/modules/todos/selectors.js");
-/* harmony import */ var _todos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todos */ "./app/containers/todos/todos.jsx");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions */ "./app/containers/todos/actions.js");
+/* harmony import */ var _todos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./todos */ "./app/containers/todos/todos.jsx");
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {// todos: getTodos(state),
-    // activeFilter: getActiveFilter(state)
-  };
+  return {};
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["bindActionCreators"])({}, dispatch);
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["bindActionCreators"])({
+    requestTodos: _actions__WEBPACK_IMPORTED_MODULE_3__["requestTodos"]
+  }, dispatch);
 };
 
-var Todos = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_todos__WEBPACK_IMPORTED_MODULE_3__["Todos"]);
+var Todos = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_todos__WEBPACK_IMPORTED_MODULE_4__["Todos"]);
 
 /***/ }),
 
@@ -688,6 +717,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var components_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! components/input */ "./app/components/input.jsx");
 /* harmony import */ var _todo_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./todo-list */ "./app/containers/todos/todo-list/index.js");
 /* harmony import */ var _filter_bar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filter-bar */ "./app/containers/todos/filter-bar/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
@@ -695,37 +741,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Todos = function Todos(_ref) {
-  var setTodos = _ref.setTodos,
-      addTodo = _ref.addTodo,
-      toggleComplete = _ref.toggleComplete,
-      removeTodo = _ref.removeTodo;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "justify-content-md-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    md: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Daily Todos"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "justify-content-md-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    md: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_bar__WEBPACK_IMPORTED_MODULE_6__["FilterBar"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "justify-content-md-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    md: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(components_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
-    onEnter: addTodo
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "justify-content-md-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    md: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list__WEBPACK_IMPORTED_MODULE_5__["TodoList"] // activeFilter={activeFilter}
-  , {
-    setTodos: setTodos // todos={todos}
-    ,
-    onRemoveTodo: removeTodo,
-    onCompleteTodoToggle: toggleComplete
-  }))));
-};
+
+var Todos = /*#__PURE__*/function (_React$Component) {
+  _inherits(Todos, _React$Component);
+
+  function Todos(props) {
+    _classCallCheck(this, Todos);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Todos).call(this, props));
+  }
+
+  _createClass(Todos, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var requestTodos = this.props.requestTodos;
+      requestTodos();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var addTodo = this.props.addTodo;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        className: "justify-content-md-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        md: 8
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Daily Todos"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        className: "justify-content-md-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        md: 8
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_bar__WEBPACK_IMPORTED_MODULE_6__["FilterBar"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        className: "justify-content-md-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        md: 8
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(components_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+        onEnter: addTodo
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        className: "justify-content-md-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        md: 8
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list__WEBPACK_IMPORTED_MODULE_5__["TodoList"], null))));
+    }
+  }]);
+
+  return Todos;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /***/ }),
 

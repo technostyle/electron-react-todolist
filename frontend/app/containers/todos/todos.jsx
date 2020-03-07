@@ -6,15 +6,20 @@ import { Input } from "components/input";
 import { TodoList } from "./todo-list";
 import { FilterBar } from "./filter-bar";
 
-export const Todos = ({
-  setTodos,
-  addTodo,
-  toggleComplete,
-  removeTodo,
-  // todos,
-  // activeFilter
-}) => (
-  <Container>
+export class Todos extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    const {requestTodos} = this.props;
+    requestTodos();
+  }
+
+  render() {
+    const {addTodo} = this.props
+
+  return (<Container>
     <Row className="justify-content-md-center">
       <Col md={8}>
         <h3>Daily Todos</h3>
@@ -32,14 +37,9 @@ export const Todos = ({
     </Row>
     <Row className="justify-content-md-center">
       <Col md={8}>
-        <TodoList
-          // activeFilter={activeFilter}
-          setTodos={setTodos}
-          // todos={todos}
-          onRemoveTodo={removeTodo}
-          onCompleteTodoToggle={toggleComplete}
-        />
+        <TodoList />
       </Col>
     </Row>
-  </Container>
-);
+  </Container>)
+  }
+}

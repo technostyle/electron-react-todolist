@@ -100,13 +100,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /*!******************!*\
   !*** ./index.js ***!
   \******************/
-/*! exports provided: pong */
+/*! exports provided: pong, getTodos */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pong__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pong */ "./pong.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pong", function() { return _pong__WEBPACK_IMPORTED_MODULE_0__["pong"]; });
+
+/* harmony import */ var _todos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todos */ "./todos.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTodos", function() { return _todos__WEBPACK_IMPORTED_MODULE_1__["getTodos"]; });
+
 
 
 
@@ -129,6 +133,27 @@ __webpack_require__.r(__webpack_exports__);
 const pong = frontendData => {
     return `${frontendData}? Fuck yourself.`;
 }
+
+/***/ }),
+
+/***/ "./todos.js":
+/*!******************!*\
+  !*** ./todos.js ***!
+  \******************/
+/*! exports provided: getTodos */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTodos", function() { return getTodos; });
+const getTodos = () => [
+    {id: 4, text: '4', complete: false},
+    {id: 5, text: '5', complete: false},
+    {id: 6, text: '6', complete: true},
+    {id: 7, text: '7', complete: true},
+    {id: 8, text: '8', complete: false},
+    {id: 9, text: '9', complete: false},
+]
 
 /***/ })
 

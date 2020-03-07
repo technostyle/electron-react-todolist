@@ -55,11 +55,3 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
-// ipcMain.on('ping', (event, frontendData) => {
-//     console.log('main process recieved', {frontendData});
-//     const serverResponse = pong(frontendData)
-//     event.reply('pong', serverResponse);
-// });
-
-// registerEvents();
