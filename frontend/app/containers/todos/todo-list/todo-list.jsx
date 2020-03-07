@@ -1,6 +1,7 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { TodoItem } from "../todo-item";
+import {sortTodoCreator, filterTodoCreator} from './utils'
 
 export const TodoList = ({
     todos,
@@ -11,8 +12,8 @@ export const TodoList = ({
     <ListGroup>
     {todos && todos.length
       ? todos
-        //   .filter(filterTodoCreator(activeFilter))
-        //   .sort(sortTodoCreator(activeFilter))
+          .filter(filterTodoCreator(activeFilter))
+          .sort(sortTodoCreator(activeFilter))
           .map(({ id, text, complete }) => (
             <TodoItem
               key={id}

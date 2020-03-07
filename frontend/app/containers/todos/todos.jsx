@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Input } from "components/input";
-import { TodoList } from "./todo-list-test";
+import { TodoList } from "./todo-list";
 import { FilterBar } from "./filter-bar";
 
 export const Todos = ({
@@ -11,8 +11,8 @@ export const Todos = ({
   addTodo,
   toggleComplete,
   removeTodo,
-  todos,
-  activeFilter
+  // todos,
+  // activeFilter
 }) => (
   <Container>
     <Row className="justify-content-md-center">
@@ -33,7 +33,7 @@ export const Todos = ({
     <Row className="justify-content-md-center">
       <Col md={8}>
         <TodoList
-          activeFilter={activeFilter}
+          // activeFilter={activeFilter}
           setTodos={setTodos}
           // todos={todos}
           onRemoveTodo={removeTodo}

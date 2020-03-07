@@ -4,8 +4,8 @@ import {getTodos, getActiveFilter} from 'modules/todos/selectors'
 import {Todos as Component} from './todos';
 
 const mapStateToProps = state => ({
-    todos: getTodos(state),
-    activeFilter: getActiveFilter(state)
+    // todos: getTodos(state),
+    // activeFilter: getActiveFilter(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(
