@@ -34,6 +34,8 @@ const defaultState = {
 
 export const todosReducer = (state = defaultState, { type, payload }) => {
   switch (type) {
+    case (TODOS_ACTIONS.SET_TODOS):
+      return {...state, todos: payload};
     case (TODOS_ACTIONS.SET_FILTER):
       return {...state, filter: payload};
     default:

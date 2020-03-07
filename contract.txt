@@ -1,0 +1,5 @@
+getTodos => getTodos-response(todos: [{todo}])
+updateTodo(todo)
+putTodo(todo)
+deleteTodo(todo)
+postTodo(todo)

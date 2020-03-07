@@ -1,6 +1,6 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { TodoItem } from "./todo-item";
+import { TodoItem } from "../todo-item";
 
 export const TodoList = ({
     todos,
@@ -9,7 +9,7 @@ export const TodoList = ({
     activeFilter
 }) => (
     <ListGroup>
-    {todos.length
+    {todos && todos.length
       ? todos
         //   .filter(filterTodoCreator(activeFilter))
         //   .sort(sortTodoCreator(activeFilter))
