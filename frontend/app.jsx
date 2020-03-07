@@ -1,3 +1,11 @@
 import React from 'react'
+import { Provider } from "react-redux";
 
-export const App = () => <div> Hello world </div> 
+import {store} from 'store'
+import {Todos} from 'containers/todos'
+
+export const App = () => (
+<Provider store={store}>
+    <Todos />
+</Provider>
+)
