@@ -100,39 +100,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /*!******************!*\
   !*** ./index.js ***!
   \******************/
-/*! exports provided: pong, getTodos */
+/*! exports provided: getTodos */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pong__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pong */ "./pong.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pong", function() { return _pong__WEBPACK_IMPORTED_MODULE_0__["pong"]; });
-
-/* harmony import */ var _todos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todos */ "./todos.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTodos", function() { return _todos__WEBPACK_IMPORTED_MODULE_1__["getTodos"]; });
+/* harmony import */ var _todos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todos */ "./todos.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTodos", function() { return _todos__WEBPACK_IMPORTED_MODULE_0__["getTodos"]; });
 
 
-
-
-/***/ }),
-
-/***/ "./pong.js":
-/*!*****************!*\
-  !*** ./pong.js ***!
-  \*****************/
-/*! exports provided: pong */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pong", function() { return pong; });
-// module.exports.pong = frontendData => {
-//     return `${frontendData}? Fuck yourself.`;
-// }
-
-const pong = frontendData => {
-    return `${frontendData}? Fuck yourself.`;
-}
 
 /***/ }),
 
