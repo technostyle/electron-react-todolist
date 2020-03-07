@@ -211,10 +211,51 @@ Input.propTypes = {
 
 /***/ }),
 
-/***/ "./app/containers/todos/filter-bar.jsx":
-/*!*********************************************!*\
-  !*** ./app/containers/todos/filter-bar.jsx ***!
-  \*********************************************/
+/***/ "./app/containers/todos/filter-bar/actions.js":
+/*!****************************************************!*\
+  !*** ./app/containers/todos/filter-bar/actions.js ***!
+  \****************************************************/
+/*! exports provided: onFilterChange */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onFilterChange", function() { return onFilterChange; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils */ "./app/utils/index.js");
+/* harmony import */ var modules_todos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! modules/todos/actions */ "./app/modules/todos/actions.js");
+/* harmony import */ var modules_todos_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! modules/todos/constants */ "./app/modules/todos/constants.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var onFilterChange = function onFilterChange(value) {
+  return function (dispatch) {
+    var _ref = value || [],
+        _ref2 = _slicedToArray(_ref, 2),
+        prev = _ref2[0],
+        cur = _ref2[1];
+
+    var newFilter = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["some"])(modules_todos_constants__WEBPACK_IMPORTED_MODULE_3__["FILTER_TYPES"], Object(utils__WEBPACK_IMPORTED_MODULE_1__["equals"])(cur)) ? cur : modules_todos_constants__WEBPACK_IMPORTED_MODULE_3__["FILTER_TYPES"].ALL;
+    dispatch(Object(modules_todos_actions__WEBPACK_IMPORTED_MODULE_2__["setFilter"])(newFilter));
+  };
+};
+
+/***/ }),
+
+/***/ "./app/containers/todos/filter-bar/filter-bar.jsx":
+/*!********************************************************!*\
+  !*** ./app/containers/todos/filter-bar/filter-bar.jsx ***!
+  \********************************************************/
 /*! exports provided: FilterBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -256,6 +297,43 @@ var FilterBar = function FilterBar(_ref) {
 
 /***/ }),
 
+/***/ "./app/containers/todos/filter-bar/index.js":
+/*!**************************************************!*\
+  !*** ./app/containers/todos/filter-bar/index.js ***!
+  \**************************************************/
+/*! exports provided: FilterBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilterBar", function() { return FilterBar; });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var modules_todos_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! modules/todos/selectors */ "./app/modules/todos/selectors.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions */ "./app/containers/todos/filter-bar/actions.js");
+/* harmony import */ var _filter_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./filter-bar */ "./app/containers/todos/filter-bar/filter-bar.jsx");
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    activeFilter: Object(modules_todos_selectors__WEBPACK_IMPORTED_MODULE_2__["getActiveFilter"])(state)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["bindActionCreators"])({
+    onFilterChange: _actions__WEBPACK_IMPORTED_MODULE_3__["onFilterChange"]
+  }, dispatch);
+};
+
+var FilterBar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_filter_bar__WEBPACK_IMPORTED_MODULE_4__["FilterBar"]);
+
+/***/ }),
+
 /***/ "./app/containers/todos/index.js":
 /*!***************************************!*\
   !*** ./app/containers/todos/index.js ***!
@@ -285,9 +363,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["bindActionCreators"])({
-    setActiveFilter: modules_todos_actions__WEBPACK_IMPORTED_MODULE_3__["setFilter"]
-  }, dispatch);
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["bindActionCreators"])({}, dispatch);
 };
 
 var Todos = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_todos__WEBPACK_IMPORTED_MODULE_4__["Todos"]);
@@ -519,7 +595,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Col */ "./node_modules/react-bootstrap/esm/Col.js");
 /* harmony import */ var components_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! components/input */ "./app/components/input.jsx");
 /* harmony import */ var _todo_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./todo-list */ "./app/containers/todos/todo-list.jsx");
-/* harmony import */ var _filter_bar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filter-bar */ "./app/containers/todos/filter-bar.jsx");
+/* harmony import */ var _filter_bar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filter-bar */ "./app/containers/todos/filter-bar/index.js");
 
 
 
@@ -533,7 +609,6 @@ var Todos = function Todos(_ref) {
       toggleComplete = _ref.toggleComplete,
       removeTodo = _ref.removeTodo,
       todos = _ref.todos,
-      setActiveFilter = _ref.setActiveFilter,
       activeFilter = _ref.activeFilter;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "justify-content-md-center"
@@ -543,10 +618,7 @@ var Todos = function Todos(_ref) {
     className: "justify-content-md-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
     md: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_bar__WEBPACK_IMPORTED_MODULE_6__["FilterBar"], {
-    activeFilter: activeFilter,
-    onFilterChange: setActiveFilter
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_bar__WEBPACK_IMPORTED_MODULE_6__["FilterBar"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "justify-content-md-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
     md: 8
@@ -624,14 +696,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 var TODOS_ACTIONS = {
   SET_TODOS: "SET_TODOS",
@@ -658,21 +722,6 @@ var defaultState = {
   todos: defaultTodos,
   filter: _constants__WEBPACK_IMPORTED_MODULE_0__["FILTER_TYPES"].ALL
 };
-
-var setFilter = function setFilter(state, payload) {
-  var _payload = _slicedToArray(payload, 2),
-      prev = _payload[0],
-      cur = _payload[1];
-
-  if (!prev) {
-    return state;
-  }
-
-  return _objectSpread({}, state, {
-    filter: cur
-  });
-};
-
 var todosReducer = function todosReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
 
@@ -682,7 +731,9 @@ var todosReducer = function todosReducer() {
 
   switch (type) {
     case TODOS_ACTIONS.SET_FILTER:
-      return setFilter(state, payload);
+      return _objectSpread({}, state, {
+        filter: payload
+      });
 
     default:
       return state;
@@ -740,15 +791,21 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, i
 /*!****************************!*\
   !*** ./app/utils/index.js ***!
   \****************************/
-/*! exports provided: prop */
+/*! exports provided: equals, prop */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prop", function() { return prop; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 
+var equals = function equals(to) {
+  return function (val) {
+    return val === to;
+  };
+};
 var prop = function prop(key, defaultValue) {
   return function (object) {
     return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(object, key, defaultValue);

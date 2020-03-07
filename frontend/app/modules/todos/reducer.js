@@ -32,19 +32,10 @@ const defaultState = {
   filter: FILTER_TYPES.ALL
 };
 
-const setFilter = (state, payload) => {
-  const [prev, cur] = payload;
-  if (!prev) {
-    return state
-  }
-
-  return {...state, filter: cur}
-}
-
 export const todosReducer = (state = defaultState, { type, payload }) => {
   switch (type) {
     case (TODOS_ACTIONS.SET_FILTER):
-      return setFilter(state, payload);
+      return {...state, filter: payload};
     default:
       return state;
   }

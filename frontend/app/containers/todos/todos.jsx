@@ -12,7 +12,6 @@ export const Todos = ({
   toggleComplete,
   removeTodo,
   todos,
-  setActiveFilter,
   activeFilter
 }) => (
   <Container>
@@ -23,7 +22,7 @@ export const Todos = ({
     </Row>
     <Row className="justify-content-md-center">
       <Col md={8}>
-        <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+        <FilterBar />
       </Col>
     </Row>
     <Row className="justify-content-md-center">
@@ -34,8 +33,8 @@ export const Todos = ({
     <Row className="justify-content-md-center">
       <Col md={8}>
         <TodoList
-            activeFilter={activeFilter}
-            setTodos={setTodos}
+          activeFilter={activeFilter}
+          setTodos={setTodos}
           todos={todos}
           onRemoveTodo={removeTodo}
           onCompleteTodoToggle={toggleComplete}
