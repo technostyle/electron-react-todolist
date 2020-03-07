@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Input } from "components/input";
-import { TodoList } from "./todo-list/todo-list";
+import { TodoList } from "./todo-list-test";
 import { FilterBar } from "./filter-bar";
 
 export const Todos = ({
@@ -35,7 +35,7 @@ export const Todos = ({
         <TodoList
           activeFilter={activeFilter}
           setTodos={setTodos}
-          todos={todos}
+          // todos={todos}
           onRemoveTodo={removeTodo}
           onCompleteTodoToggle={toggleComplete}
         />

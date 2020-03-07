@@ -535,10 +535,41 @@ TodoItem.propTypes = {
 
 /***/ }),
 
-/***/ "./app/containers/todos/todo-list/todo-list.jsx":
+/***/ "./app/containers/todos/todo-list-test/index.js":
 /*!******************************************************!*\
-  !*** ./app/containers/todos/todo-list/todo-list.jsx ***!
+  !*** ./app/containers/todos/todo-list-test/index.js ***!
   \******************************************************/
+/*! exports provided: TodoList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoList", function() { return TodoList; });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var modules_todos_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! modules/todos/selectors */ "./app/modules/todos/selectors.js");
+/* harmony import */ var _todo_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo-list */ "./app/containers/todos/todo-list-test/todo-list.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    todos: console.log({
+      state: state
+    }) || Object(modules_todos_selectors__WEBPACK_IMPORTED_MODULE_2__["getTodos"])(state)
+  };
+};
+
+var TodoList = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(_todo_list__WEBPACK_IMPORTED_MODULE_3__["TodoList"]);
+
+/***/ }),
+
+/***/ "./app/containers/todos/todo-list-test/todo-list.jsx":
+/*!***********************************************************!*\
+  !*** ./app/containers/todos/todo-list-test/todo-list.jsx ***!
+  \***********************************************************/
 /*! exports provided: TodoList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -592,7 +623,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Row */ "./node_modules/react-bootstrap/esm/Row.js");
 /* harmony import */ var react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Col */ "./node_modules/react-bootstrap/esm/Col.js");
 /* harmony import */ var components_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! components/input */ "./app/components/input.jsx");
-/* harmony import */ var _todo_list_todo_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./todo-list/todo-list */ "./app/containers/todos/todo-list/todo-list.jsx");
+/* harmony import */ var _todo_list_test__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./todo-list-test */ "./app/containers/todos/todo-list-test/index.js");
 /* harmony import */ var _filter_bar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filter-bar */ "./app/containers/todos/filter-bar/index.js");
 
 
@@ -626,10 +657,10 @@ var Todos = function Todos(_ref) {
     className: "justify-content-md-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_3__["default"], {
     md: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_list__WEBPACK_IMPORTED_MODULE_5__["TodoList"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_test__WEBPACK_IMPORTED_MODULE_5__["TodoList"], {
     activeFilter: activeFilter,
-    setTodos: setTodos,
-    todos: todos,
+    setTodos: setTodos // todos={todos}
+    ,
     onRemoveTodo: removeTodo,
     onCompleteTodoToggle: toggleComplete
   }))));
