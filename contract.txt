@@ -1,5 +1,5 @@
 getTodos => getTodos-response(todos: [{todo}])
-updateTodo(todo)
+_sync_ getTodo(id) => getTodo-response(todo)
 putTodo(todo)
-deleteTodo(todo)
+deleteTodo(id)
 postTodo(todo)

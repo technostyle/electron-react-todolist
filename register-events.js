@@ -6,3 +6,7 @@ ipcMain.on('getTodos', event => {
     console.log('getTodos request', {serverResponse});
     event.reply('getTodos-response', serverResponse);
 })
+
+ipcMain.on('deleteTodo', (event, id) => {
+    console.log('deleteTodo requested', {id})
+})

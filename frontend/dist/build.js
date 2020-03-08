@@ -215,24 +215,39 @@ Input.propTypes = {
 /*!*****************************************!*\
   !*** ./app/containers/todos/actions.js ***!
   \*****************************************/
-/*! exports provided: requestTodos */
+/*! exports provided: requestTodos, updateTodo, createTodo, deleteTodo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestTodos", function() { return requestTodos; });
-/* harmony import */ var modules_todos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! modules/todos/actions */ "./app/modules/todos/actions.js");
-
-
-var _window$require = window.require('electron'),
-    ipcRenderer = _window$require.ipcRenderer;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTodo", function() { return updateTodo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTodo", function() { return createTodo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTodo", function() { return deleteTodo; });
+/* harmony import */ var data_layer_todos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! data-layer/todos */ "./app/data-layer/todos/index.js");
 
 var requestTodos = function requestTodos() {
-  return function (dispatch) {
-    ipcRenderer.on('getTodos-response', function (event, todos) {
-      dispatch(Object(modules_todos_actions__WEBPACK_IMPORTED_MODULE_0__["setTodos"])(todos));
-    });
-    ipcRenderer.send('getTodos');
+  return function (dispatch, getState) {
+    var todosDataLayer = Object(data_layer_todos__WEBPACK_IMPORTED_MODULE_0__["TodosDataLayer"])(dispatch, getState);
+    todosDataLayer.requestTodos();
+  };
+};
+var updateTodo = function updateTodo(todo) {
+  return function (dispatch, getState) {
+    var todosDataLayer = Object(data_layer_todos__WEBPACK_IMPORTED_MODULE_0__["TodosDataLayer"])(dispatch, getState);
+    todosDataLayer.updateTodo(todo);
+  };
+};
+var createTodo = function createTodo(todo) {
+  return function (dispatch, getState) {
+    var todosDataLayer = Object(data_layer_todos__WEBPACK_IMPORTED_MODULE_0__["TodosDataLayer"])(dispatch, getState);
+    todosDataLayer.createTodo(todo);
+  };
+};
+var deleteTodo = function deleteTodo(todo) {
+  return function (dispatch, getState) {
+    var todosDataLayer = Object(data_layer_todos__WEBPACK_IMPORTED_MODULE_0__["TodosDataLayer"])(dispatch, getState);
+    todosDataLayer.deleteTodo(todo);
   };
 };
 
@@ -449,10 +464,27 @@ var RemoveButton = function RemoveButton(_ref3) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _todo_item__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo-item */ "./app/containers/todos/todo-item/todo-item.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TodoItem", function() { return _todo_item__WEBPACK_IMPORTED_MODULE_0__["TodoItem"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoItem", function() { return TodoItem; });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./app/containers/todos/actions.js");
+/* harmony import */ var _todo_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo-item */ "./app/containers/todos/todo-item/todo-item.jsx");
 
 
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["bindActionCreators"])({
+    onRemove: _actions__WEBPACK_IMPORTED_MODULE_2__["deleteTodo"]
+  }, dispatch);
+};
+
+var TodoItem = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_todo_item__WEBPACK_IMPORTED_MODULE_3__["TodoItem"]);
 
 /***/ }),
 
@@ -785,6 +817,110 @@ var Todos = /*#__PURE__*/function (_React$Component) {
 
   return Todos;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/***/ }),
+
+/***/ "./app/data-layer/todos/index.js":
+/*!***************************************!*\
+  !*** ./app/data-layer/todos/index.js ***!
+  \***************************************/
+/*! exports provided: TodosDataLayer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodosDataLayer", function() { return TodosDataLayer; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _todos_data_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todos-data-layer */ "./app/data-layer/todos/todos-data-layer.js");
+
+
+
+var TodosDataLayerFabric = function TodosDataLayerFabric(dispatch, getState) {
+  return new _todos_data_layer__WEBPACK_IMPORTED_MODULE_1__["TodosDataLayer"](dispatch, getState);
+};
+
+var TodosDataLayer = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["memoize"])(TodosDataLayerFabric);
+
+/***/ }),
+
+/***/ "./app/data-layer/todos/todos-data-layer.js":
+/*!**************************************************!*\
+  !*** ./app/data-layer/todos/todos-data-layer.js ***!
+  \**************************************************/
+/*! exports provided: TodosDataLayer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodosDataLayer", function() { return TodosDataLayer; });
+/* harmony import */ var modules_todos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! modules/todos/actions */ "./app/modules/todos/actions.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var _window$require = window.require('electron'),
+    ipcRenderer = _window$require.ipcRenderer;
+
+var TodosDataLayer = /*#__PURE__*/function () {
+  function TodosDataLayer(dispatch, getState) {
+    _classCallCheck(this, TodosDataLayer);
+
+    this.store = {
+      dispatch: dispatch,
+      getState: getState
+    };
+    this.registrateEvents = this.registrateEvents.bind(this);
+    console.log('TodosDataLayer constructor executed', this);
+    this.registrateEvents();
+  }
+
+  _createClass(TodosDataLayer, [{
+    key: "registrateEvents",
+    value: function registrateEvents() {
+      console.log('TodosDataLayer registrateEvents this', this);
+      var dispatch = this.store.dispatch;
+      ipcRenderer.on('getTodos-response', function (event, todos) {
+        dispatch(Object(modules_todos_actions__WEBPACK_IMPORTED_MODULE_0__["setTodos"])(todos));
+      });
+    }
+  }, {
+    key: "requestTodos",
+    value: function requestTodos() {
+      ipcRenderer.send('getTodos');
+    }
+  }, {
+    key: "createTodo",
+    value: function createTodo(todo) {
+      ipcRenderer.send('postTodo', todo);
+    }
+  }, {
+    key: "updateTodo",
+    value: function updateTodo(todo) {
+      ipcRenderer.send('putTodo', todo);
+    }
+  }, {
+    key: "deleteTodo",
+    value: function deleteTodo(id) {
+      console.log('todos-data-layer deleteTodo', {
+        id: id
+      });
+      ipcRenderer.send('deleteTodo', id);
+    }
+  }, {
+    key: "getTodo",
+    value: function getTodo(todo) {
+      var id = todo.id;
+      ipcRenderer.sendSync('getTodo', id);
+    }
+  }]);
+
+  return TodosDataLayer;
+}();
 
 /***/ }),
 
