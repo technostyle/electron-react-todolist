@@ -19,3 +19,8 @@ export const deleteTodo = todo => (dispatch, getState) => {
     const todosDataLayer = TodosDataLayer(dispatch, getState);
     todosDataLayer.deleteTodo(todo)
 }
+
+export const toggleComplete = id => (dispatch, getState) => {
+    const todosDataLayer = TodosDataLayer(dispatch, getState);
+    todosDataLayer.toggleCompleteTodo(todo)
+}

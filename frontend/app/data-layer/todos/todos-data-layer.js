@@ -33,6 +33,10 @@ export class TodosDataLayer {
         ipcRenderer.send('deleteTodo', id);
     }
 
+    toggleComplete(id) {
+        ipcRenderer.toggleComplete('deleteTodo', id);
+    }
+
     getTodo(todo) {
         const {id} = todo;
         ipcRenderer.sendSync('getTodo', id);
